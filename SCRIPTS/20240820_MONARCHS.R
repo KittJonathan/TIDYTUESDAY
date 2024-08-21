@@ -7,6 +7,8 @@
 # 📦 PACKAGES -------------------------------------------------------------
 
 library(tidyverse)
+library(skimr)
+library(naniar)
 
 # ➡️ IMPORT DATA ----------------------------------------------------------
 
@@ -17,3 +19,9 @@ d <-
 # 🔎 EXPLORE THE DATA -----------------------------------------------------
 
 glimpse(d)
+skim(d)
+
+na_strings <- c("?", "-")
+
+d |> 
+  replace_with_na_all(condition = ~.x %in% na_strings)
